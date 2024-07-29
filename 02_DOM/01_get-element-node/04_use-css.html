@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .area{
+            width: 100px;
+            height: 100px;
+            border: 1px solid red; 
+        }
+    </style>
+</head>
+<body>
+    <h1>04. CSS 선택자를 이용한 요소 노드 취득</h1>
+
+    <pre>
+    <b>Document.prototype/Element.prototype.querySelector 메서드는 인수로 전달한 CSS 선택자를 만족시키는 하나의 요소 노드를 탐색하여 반환한다.</b>
+    </pre>
+
+    <div class="area">
+        <p>first</p>
+    </div>
+
+    <div class="area">
+        <p>second</p>
+    </div>
+
+    <script>
+        //querySelector
+        //dom전체에서 class어트리뷰트가 area인 첫번쨰 요소 노드 탐색
+        const $area = document.querySelector(".area");
+        console.log($area);
+
+        // 취득한 요소 노드의 backgorundColor 프로퍼티 값 변경
+        $area.style.backgroundColor = 'gray';
+
+        //$area의 자식노드중 p태그인 첫번쨰요소
+        const $first = $area.querySelector('p');
+        console.log($first);
+        $first.style.color = 'white';
+
+        document.querySelector('area>p').style.color='pink';
+    </script>
+
+<hr>
+<pre>
+<b>Document.prototype/Element.prototype.querySelectorAll 메서드는 인수로 전달한 CSS 선택자를 만족시키는 모든 요소 노드를 탐색하여 반환한다.</b>
+여러 개의 요소 노드 객체를 갖는 DOM 컬렉션 객체인 NodeList 객체를 반환한다.
+</pre>
+
+<ul id="list">
+    <li class="drink">커피</li>
+    <li class="drink">콜라</li>
+    <li class="food">김치찌개</li>
+    <li class="food">된장찌개</li>
+</ul>
+// DOM 전체에서 ul 태그의 자손 li 태그들을 모두 NodeList로 반환
+<script>
+const $lists = document.querySelectorAll('ul > li');
+
+// [...$lists].forEach(list => list.style.backgroundColor ='gray');
+
+$lists.forEach(lists => list.style.backgroundColor ='gray');
+
+// const $foodLists = document.getElementById('list').querySelectorAll('.food');
+
+const $foodLists = document.querySelectorAll('#list > .food')
+console.log($foodLists);
+
+[...$foodLists].forEach(food =>food.style.color ='white')
+const $noElemList = document.querySelectorAll('.noElemList');
+console.log($noElemList);
+
+
+</script>
+
+</body>
+</html>
